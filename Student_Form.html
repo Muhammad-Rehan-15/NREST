@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Student Application Form</title>
+  <link rel="stylesheet" href="css/formstyle.css">
+  </head>
+<body>
+   <section>
+    <div class="form-container" id="formContainer">
+    <header>
+      <div class="logo-section">
+        <img src="Laptop/flogo.jpeg" alt="Logo" class="logo">
+        <div class="heading">
+        <h1>NASIR RAHIM LODHI</h1>
+        <h2>EDUCATION SUPPORT TRUST</h2>
+      </div>
+    </header>
+
+    <section class="form-section">
+    <h3>Student Application Form</h3>
+    <label for="officeField">ID #</label>
+       <input type="text" id="officeField" style="width: 350px;" readonly onclick="showMessage()">
+             
+    <form id="studentForm">
+        <label>Student Name: <input type="text" placeholder="Student Name" name="studentName" required></label>
+        <label>Father Name: <input type="text" placeholder="Father Name" name="fatherName" required></label>
+        <label>CNIC: <input type="number" placeholder="1234-567891055-5" name="cnic" required></label>
+        <label>Mobile #: <input type="number" placeholder="0123-457614825"  name="mobile" required></label>
+        <label>WhatsApp Number #: <input type="number" placeholder="0123-457614825" name="whatsapp" required></label>
+        <label>Email: <input type="email" placeholder="abcd@gmail.com" name="email" required></label>
+        <label>Gender: 
+          <select name="laptop" required style="height: 32px; font-size: 14px;">
+            <option value="">Select</option>
+            <option value="Male">Male</option>
+            <option value="Female">Female</option>
+          </select>
+        </label>      
+        <label>Address: <input type="text" placeholder="Enter The Address" name="address" required></label>
+        <label>Course: <input type="text" name="course" value="E-Commerce" readonly></label>
+        <label>Qulification: 
+          <select name="laptop" required style="height: 32px; font-size: 14px;">
+            <option value="">Select</option>
+            <option value="Matric">Matric</option>
+            <option value="Intermediate">Intermediate</option>
+          </select>
+        </label>        <label>Do You Laptop: 
+          <select name="laptop" required style="height: 32px; font-size: 14px;">
+            <option value="">Select</option>
+            <option value="Yes">Yes</option>
+            <option value="No">No</option>
+          </select>
+        </label>
+      </form>
+      <div class="upload">
+        <img id="previewImage" alt="Preview">
+        <input type="file" id="uploadPic" accept="image/*" required onchange="previewPicture(event)">
+      </div>
+    </section>
+
+    <section class="receipt">
+      <h3>Admission Receipt</h3>
+      <form id="receiptForm">
+        <label>Student Name: <input type="text" placeholder="Student Name"name="receiptStudentName" required></label>
+        <label>Father Name: <input type="text" placeholder="Father Name" name="receiptFatherName" required></label>
+        <label>Mobile #: <input type="number" placeholder="1234-124578484" name="receiptMobile" required></label>
+      </form>
+
+      <p class="urdu">
+        ضروری ہدایت:<br>
+        فارم کو احتیاط سے مکمل پر کریں۔ ہر سوال کا درست اور مکمل جواب دیں۔<br>
+        فارم ٹریننگ سینٹر (اسمارٹ اینجلز گرامر اسکول) کے دفتر میں جمع کروائیں۔<br>
+        فارم جمع کروانے کا وقت دوپہر 4:00 بجے سے شام 6:00 بجے تک (پیر سے ہفتہ)۔
+      </p>
+    </section>
+<button class="download-btn" onclick="validateAndSubmit()">Submit & Download</button>
+  </div>
+  <script>
+  async function validateAndSubmit() {
+    const studentForm = document.getElementById("studentForm");
+    const receiptForm = document.getElementById("receiptForm");
+    const uploadPic = document.getElementById("uploadPic");
+
+    if (!studentForm.checkValidity() || !receiptForm.checkValidity() || !uploadPic.files.length) {
+      alert("Please fill all required fields and upload picture before submitting.");
+      return;
+    }
+
+    // ✅ Wait for preview image to load if needed
+    const previewImage = document.getElementById("previewImage");
+    if (previewImage.src === "") {
+      alert("Please upload a picture.");
+      return;
+    }
+
+    // ✅ Take screenshot of full form
+    const formElement = document.getElementById("formContainer");
+
+    // Scroll to top to capture full form correctly
+    window.scrollTo(0, 0);
+
+    html2canvas(formElement, { scale: 2 }).then(canvas => {
+      const imgData = canvas.toDataURL("image/png");
+
+      const { jsPDF } = window.jspdf;
+      const pdf = new jsPDF("p", "mm", "a4");
+
+      const imgProps = pdf.getImageProperties(imgData);
+      const pdfWidth = pdf.internal.pageSize.getWidth();
+      const pdfHeight = (imgProps.height * pdfWidth) / imgProps.width;
+
+      pdf.addImage(imgData, "PNG", 0, 0, pdfWidth, pdfHeight);
+      pdf.save("Student_Application_Form.pdf");
+
+      // ✅ Reset
+      studentForm.reset();
+      receiptForm.reset();
+      uploadPic.value = "";
+      previewImage.src = "";
+
+      alert("Form submitted and PDF downloaded successfully.");
+    });
+  }
+
+  function previewPicture(event) {
+    const reader = new FileReader();
+    reader.onload = function(){
+      const preview = document.getElementById("previewImage");
+      preview.src = reader.result;
+    };
+    reader.readAsDataURL(event.target.files[0]);
+  }
+
+  function showMessage() {
+    alert("Institute Officers are put the Value ");
+  }
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+
+
+</script>
+</body>
+</html>

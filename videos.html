@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Gallery Tab</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="css/style.css">  
+</head>
+<body>
+   <header>
+    <div class="Web_logo">
+<a class="web_logo" href="index.html" >
+    <img src="Laptop/logo.png" alt="Web logo" style="height: 60px;"></a>
+  <a class="web_logo" href="index.html" ></a>   
+  <div class="logo"><a href="index.html"></a>NREST</div>
+  </div>
+  <nav> 
+  <ul>
+    <li><a href="index.html">Home</a></li>
+      <li class="dropdown">
+      <a href="#">About us ▾</a>
+      <ul class="dropdown-menu">
+        <li><a href="about.html">Introduction</a></li>
+        <li><a href="chancellor-message.html">Chairman Massage</a></li>
+      </ul>
+    </li>  
+    <li class="dropdown">
+    <a href="#">Programs ▾</a>
+    <ul class="dropdown-menu">
+    <li><a href="webdevelop.html">Web Development</a></li>
+    <li><a href="e-commerce.html">E-commerce</a></li>
+    <li><a href="graphic.html">Graphic Designing</a></li>
+  </ul>
+    <li><a href="News.html">News</a></li>
+  <li class="dropdown">
+    <a href="#">Gallery ▾</a>
+    <ul class="dropdown-menu">
+    <li><a href="videos.html">Videos</a></li>
+    <li><a href="gallery.html">Pictures</a></li>
+  </ul>
+<li class="dropdown">
+    <a href="#"> Student Portal ▾</a>
+    <ul class="dropdown-menu">
+    <li><a href="Student_Form.html">Admission Form</a></li>
+    
+  </ul>
+</li>
+       <li><a href="contact.html">Contact</a></li>
+
+    </ul>
+    
+</nav>
+<div class="menu-toggle" id="menuToggle">&#9776;</div>  
+</header>
+
+<div class="heading">
+   <h2><u><strong>Welcome to Gallery</strong></u></h2>
+</div>
+<section class="video-section">
+ <div class="video-grid">
+    <div class="video-item all events">
+    <video src="Video/video 1.mp4" width="400" autoplay muted loop></video>
+      <h4>Program Ceremony</h4>
+  </div>
+  <div class="video-item all events">
+    <video src="Video/video 2.mp4" width="400" autoplay muted loop></video>
+      <h4>Meeting With First Batch</h4>
+  </div>
+  <div class="video-item all events">
+    <video src="Video/Video a (3).mp4" width="400" autoplay muted loop></video>
+        
+  </div>
+  <div class="video-item all events">
+    <video src="Video/video b (4).mp4" width="400" autoplay muted loop></video>
+        
+  </div>
+  
+  <div class="video-item all events">
+    <video src="Video/Video a (4).mp4" width="400" autoplay muted loop></video>
+      
+  </div>
+  <div class="video-item all events">
+    <video src="Video/Video a (5).mp4" width="400" autoplay muted loop></video>
+        </div>
+  
+  <div class="video-item all events">
+    <video src="Video/video b (1).mp4" width="400" autoplay muted loop></video>
+      
+  </div>
+  <div class="video-item all events">
+    <video src="Video/video b (2).mp4" width="400" autoplay muted loop></video>
+      
+  </div>
+  <div class="video-item all events">
+    <video src="Video/video b (3).mp4" width="400" autoplay muted loop></video>
+      
+  </div>    
+    
+  
+  </div>
+  
+</div>
+       <a href="https://wa.me/923343673108" class="whatsapp-float" target="_blank">
+    <img src="https://cdn-icons-png.flaticon.com/512/733/733585.png" alt="Chat on WhatsApp" width="50" />
+  </a>
+</section>
+ 
+
+<script>
+         const menuToggle = document.querySelector('.menu-toggle');
+const nav = document.querySelector('nav');
+ 
+menuToggle.addEventListener('click', () => {
+  nav.classList.toggle('active');
+});
+</script>
+
+</body>
+</html>
